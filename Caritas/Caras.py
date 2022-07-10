@@ -22,12 +22,17 @@ while(True):
         roi_color = frame[y:y+h, x:x+w]
 
         id_,conf = recognizer.predict(roi_gray)
-        if conf >= 45  and conf <= 85:
+        if conf >= 80:  #and conf <= 85:
             print(id_)
             print(labels[id_])
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            name = labels[id_]
+            color = (255,255,255)
+            stroke = 2
+            cv2.putText(frame , name ,(x,y), font, 1, color, stroke, cv2.LINE_AA)
 
-        item = "miyo.png"
-        cv2.imwrite(item, roi_gray)
+        item = "6.png"
+        cv2.imwrite(item, roi_color)
 
         color = (255,0,0)
         stroke = 2
